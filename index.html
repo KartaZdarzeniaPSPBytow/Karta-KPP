@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Karta KPP</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #e9ecef;
+    color: #222;
+}
+
+.container {
+    max-width: 1050px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,.12);
+}
+
+h1 {
+    text-align: center;
+    color: #b30000;
+    font-size: 26px;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+
+h2 {
+    background: #b30000;
+    color: white;
+    padding: 9px 13px;
+    border-radius: 6px;
+    font-size: 17px;
+    margin-top: 22px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* SAMPLE */
+
+.sample {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.sample-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.sample label {
+    font-size: 13px;
+    margin-bottom: 3px;
+}
+
+.sample textarea {
+    height: 43px;
+    min-height: 43px;
+    padding: 6px;
+    font-size: 13px;
+}
+
+/* AVPU */
+
+.avpu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.avpu label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 13px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fafafa;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.avpu label:hover {
+    background: #f0f0f0;
+}
+
+.avpu-letter {
+    font-size: 20px;
+    font-weight: bold;
+    color: #b30000;
+    min-width: 25px;
+}
+
+/* PARAMETRY */
+
+.parameters {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+/* CHECKBOXY */
+
+.options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 7px 18px;
+    padding: 9px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fafafa;
+}
+
+.options label {
+    font-weight: normal;
+    margin: 0;
+}
+
+/* ABC */
+
+.abc-row {
+    display: grid;
+    grid-template-columns: 65px 1fr;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.abc-letter {
+    font-size: 25px;
+    font-weight: bold;
+    color: #b30000;
+    text-align: center;
+    padding: 8px;
+    border: 2px solid #b30000;
+    border-radius: 6px;
+}
+
+/* PODPIS */
+
+.signature {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.signature .field {
+    width: 50%;
+    text-align: center;
+}
+
+.signature .field label {
+    text-align: center;
+}
+
+.signature input {
+    text-align: center;
+}
+
+/* PRZYCISK */
+
+button {
+    margin-top: 22px;
+    width: 100%;
+    padding: 14px;
+    background: #5865F2;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #4752C4;
+}
+
+button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+
+.status {
+    text-align: center;
+    margin-top: 10px;
+    font-weight: bold;
+    white-space: pre-line;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 8px;
+    }
+
+    .container {
+        padding: 14px;
+    }
+
+    .grid,
+    .grid-3,
+    .parameters {
+        grid-template-columns: 1fr;
+    }
+
+    .signature {
+        display: flex;
+        justify-content: center;
+    }
+
+    .signature .field {
+        width: 100%;
+        text-align: center;
+    }
+
+    .signature .field label {
+        text-align: center;
+    }
+
+    .signature input {
+        text-align: center;
+    }
+
+    .options {
+        grid-template-columns: 1fr;
+    }
+
+    .abc-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+Karta udzielonej kwalifikowanej pierwszej pomocy
+</h1>
+
+<!-- DATA I MIEJSCE -->
+
+<h2>Data i miejsce zdarzenia</h2>
+
+<div class="grid">
+
+    <div class="field">
+        <label>Data zdarzenia</label>
+        <input type="date" id="data_zdarzenia">
+    </div>
+
+    <div class="field">
+        <label>Miejsce zdarzenia</label>
+        <input type="text" id="miejsce_zdarzenia">
+    </div>
+
+</div>
+
+<div class="field">
+
+    <label>Nazwisko i imię ratownika</label>
+
+    <input
+        type="text"
+        id="ratownik">
+
+</div>
+
+<!-- POSZKODOWANY -->
+
+<h2>Informacja o poszkodowanym</h2>
+
+<div class="grid-3">
+
+    <div class="field">
+
+        <label>Płeć</label>
+
+        <label>
+            <input type="radio" name="plec" value="Kobieta">
+            Kobieta
+        </label>
+
+        <label>
+            <input type="radio" name="plec" value="Mężczyzna">
+            Mężczyzna
+        </label>
+
+    </div>
+
+    <div class="field">
+
+        <label>Data urodzenia</label>
+
+        <input
+            type="date"
+            id="data_urodzenia">
+
+    </div>
+
+    <div class="field">
+
+        <label>Nazwisko</label>
+
+        <input
+            type="text"
+            id="nazwisko">
+
+    </div>
+
+    <div class="field">
+
+        <label>Imię</label>
+
+        <input
+            type="text"
+            id="imie">
+
+    </div>
+
+</div>
+
+<div class="field">
+
+    <label>Uwagi</label>
+
+    <textarea
+        id="uwagi"
+        style="height:65px;"></textarea>
+
+</div>
+
+<!-- AVPU -->
+
+<h2>AVPU</h2>
+
+<div class="avpu">
+
+    <label>
+        <input
+            type="radio"
+            name="avpu"
+            value="A — Alert — Przytomny">
+
+        <span class="avpu-letter">A</span>
+
+        <span>
+            <b>Alert</b> – Przytomny
+        </span>
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="avpu"
+            value="V — Verbal — Reaguje na głos">
+
+        <span class="avpu-letter">V</span>
+
+        <span>
+            <b>Verbal</b> – Reaguje na głos
+        </span>
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="avpu"
+            value="P — Pain — Reaguje na ból">
+
+        <span class="avpu-letter">P</span>
+
+        <span>
+            <b>Pain</b> – Reaguje na ból
+        </span>
+    </label>
+
+    <label>
+        <input
+            type="radio"
+            name="avpu"
+            value="U — Unresponsive — Nieprzytomny">
+
+        <span class="avpu-letter">U</span>
+
+        <span>
+            <b>Unresponsive</b> – Nieprzytomny
+        </span>
+    </label>
+
+</div>
+
+<!-- PARAMETRY -->
+
+<h2>Parametry</h2>
+
+<div class="parameters">
+
+    <div class="field">
+
+        <label>SpO₂ (%)</label>
+
+        <input
+            type="number"
+            id="spo2">
+
+    </div>
+
+    <div class="field">
+
+        <label>Tętno (/min)</label>
+
+        <input
+            type="number"
+            id="tetno">
+
+    </div>
+
+    <div class="field">
+
+        <label>Oddech (/min)</label>
+
+        <input
+            type="number"
+            id="oddech">
+
+    </div>
+
+    <div class="field">
+
+        <label>Kapilarny</label>
+
+        <label>
+            <input
+                type="radio"
+                name="kapilarny"
+                value="≤ 2 s">
+            ≤ 2 s
+        </label>
+
+        <label>
+            <input
+                type="radio"
+                name="kapilarny"
+                value="> 2 s">
+            &gt; 2 s
+        </label>
+
+    </div>
+
+</div>
+
+<!-- SAMPLE -->
+
+<h2>Wywiad SAMPLE</h2>
+
+<div class="sample">
+
+    <div class="sample-item">
+        <label>S — Objawy / symptomy</label>
+        <textarea id="sample_s"></textarea>
+    </div>
+
+    <div class="sample-item">
+        <label>A — Alergie</label>
+        <textarea id="sample_a"></textarea>
+    </div>
+
+    <div class="sample-item">
+        <label>M — Medykamenty</label>
+        <textarea id="sample_m"></textarea>
+    </div>
+
+    <div class="sample-item">
+        <label>P — Przebyte choroby</label>
+        <textarea id="sample_p"></textarea>
+    </div>
+
+    <div class="sample-item">
+        <label>L — Posiłek</label>
+        <textarea id="sample_l"></textarea>
+    </div>
+
+    <div class="sample-item">
+        <label>E — Opis zdarzenia</label>
+        <textarea id="sample_e"></textarea>
+    </div>
+
+</div>
+
+<!-- ABC -->
+
+<h2>ABC</h2>
+
+<div class="abc-row">
+
+    <div class="abc-letter">A</div>
+
+    <div>
+
+        <b>Drożność dróg oddechowych</b>
+
+        <div class="options">
+
+            <label>
+                <input type="checkbox" name="abc_a" value="drożne">
+                drożne
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_a" value="udrożniono: bezprzyrządowo">
+                udrożniono: bezprzyrządowo
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_a" value="udrożniono: odessano">
+                udrożniono: odessano
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_a" value="rurka U-G">
+                rurka U-G
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_a" value="przyrząd nadgłośniowy">
+                przyrząd nadgłośniowy
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="abc-row">
+
+    <div class="abc-letter">B</div>
+
+    <div>
+
+        <b>Oddech</b>
+
+        <div class="options">
+
+            <label>
+                <input type="checkbox" name="abc_b" value="obecny">
+                obecny
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_b" value="brak prawidłowego oddechu">
+                brak prawidłowego oddechu
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_b" value="tlenoterapia bierna">
+                tlenoterapia bierna
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_b" value="tlenoterapia czynna">
+                tlenoterapia czynna
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_b" value="respirator">
+                respirator
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div class="abc-row">
+
+    <div class="abc-letter">C</div>
+
+    <div>
+
+        <b>Krążenie</b>
+
+        <div class="options">
+
+            <label>
+                <input type="checkbox" name="abc_c" value="obecne">
+                obecne
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_c" value="centralizacja">
+                centralizacja
+            </label>
+
+            <label>
+                <input type="checkbox" name="abc_c" value="brak">
+                brak
+            </label>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- OBRAŻENIA -->
+
+<h2>Rodzaj obrażeń</h2>
+
+<div class="options">
+
+<label><input type="checkbox" name="obrazenia" value="odmrożenie"> odmrożenie</label>
+<label><input type="checkbox" name="obrazenia" value="skażenie"> skażenie</label>
+<label><input type="checkbox" name="obrazenia" value="podtopienie"> podtopienie</label>
+<label><input type="checkbox" name="obrazenia" value="zatrucie wziewne"> zatrucie wziewne</label>
+<label><input type="checkbox" name="obrazenia" value="obrażenia głowy"> obrażenia głowy</label>
+<label><input type="checkbox" name="obrazenia" value="podejrzenie kręgosłupa"> podejrzenie kręgosłupa</label>
+<label><input type="checkbox" name="obrazenia" value="podejrzenie klatki piersiowej"> podejrzenie klatki piersiowej</label>
+<label><input type="checkbox" name="obrazenia" value="podejrzenie jamy brzusznej"> podejrzenie jamy brzusznej</label>
+<label><input type="checkbox" name="obrazenia" value="podejrzenie miednicy"> podejrzenie miednicy</label>
+<label><input type="checkbox" name="obrazenia" value="złamania / kończyn"> złamania / kończyn</label>
+<label><input type="checkbox" name="obrazenia" value="zwichnięcia / skręcenia"> zwichnięcia / skręcenia</label>
+<label><input type="checkbox" name="obrazenia" value="rany / krwotoki"> rany / krwotoki</label>
+<label><input type="checkbox" name="obrazenia" value="amputacja"> amputacja</label>
+<label><input type="checkbox" name="obrazenia" value="zmiażdżenie"> zmiażdżenie</label>
+
+</div>
+
+<!-- OBJAWY -->
+
+<h2>Rodzaj objawów</h2>
+
+<div class="options">
+
+<label><input type="checkbox" name="objawy" value="drgawki"> drgawki</label>
+<label><input type="checkbox" name="objawy" value="nudności / wymioty"> nudności / wymioty</label>
+<label><input type="checkbox" name="objawy" value="zaburzenia zachowania"> zaburzenia zachowania</label>
+<label><input type="checkbox" name="objawy" value="ból w klatce piersiowej"> ból w klatce piersiowej</label>
+<label><input type="checkbox" name="objawy" value="anafilaksja"> anafilaksja</label>
+<label><input type="checkbox" name="objawy" value="ciąża"> ciąża</label>
+<label><input type="checkbox" name="objawy" value="wstrząs"> wstrząs</label>
+<label><input type="checkbox" name="objawy" value="duszność"> duszność</label>
+<label><input type="checkbox" name="objawy" value="omdlenie"> omdlenie</label>
+<label><input type="checkbox" name="objawy" value="wychłodzenie"> wychłodzenie</label>
+<label><input type="checkbox" name="objawy" value="zatrzymanie krążenia"> zatrzymanie krążenia</label>
+
+</div>
+
+<div class="field">
+
+    <label>Inne</label>
+
+    <textarea
+        id="inne_objawy"
+        style="height:60px;"></textarea>
+
+</div>
+
+<!-- POSTĘPOWANIE -->
+
+<h2>Postępowanie</h2>
+
+<div class="options">
+
+<label><input type="checkbox" name="postepowanie" value="wsparcie psychiczne"> wsparcie psychiczne</label>
+<label><input type="checkbox" name="postepowanie" value="termoizolacja"> termoizolacja</label>
+<label><input type="checkbox" name="postepowanie" value="pozycja bezpieczna"> pozycja bezpieczna</label>
+<label><input type="checkbox" name="postepowanie" value="na wznak"> na wznak</label>
+<label><input type="checkbox" name="postepowanie" value="usunięcie ciał obcych"> usunięcie ciał obcych</label>
+<label><input type="checkbox" name="postepowanie" value="uciśnięcie klatki piersiowej"> uciśnięcie klatki piersiowej</label>
+<label><input type="checkbox" name="postepowanie" value="użycie AED"> użycie AED</label>
+<label><input type="checkbox" name="postepowanie" value="ograniczenie ruchów kręgosłupa"> ograniczenie ruchów kręgosłupa</label>
+<label><input type="checkbox" name="postepowanie" value="unieruchomienie złamań / zwichnięć"> unieruchomienie złamań / zwichnięć</label>
+<label><input type="checkbox" name="postepowanie" value="nosze deska"> nosze deska</label>
+<label><input type="checkbox" name="postepowanie" value="kołnierz szyjny"> kołnierz szyjny</label>
+<label><input type="checkbox" name="postepowanie" value="pas do stabilizacji"> pas do stabilizacji</label>
+<label><input type="checkbox" name="postepowanie" value="opatrunek wentylacyjny / chemostatyczny"> opatrunek wentylacyjny / chemostatyczny</label>
+<label><input type="checkbox" name="postepowanie" value="zabezpieczenie amputowanych tkanek"> zabezpieczenie amputowanych tkanek</label>
+<label><input type="checkbox" name="postepowanie" value="opatrunek osłaniający"> opatrunek osłaniający</label>
+<label><input type="checkbox" name="postepowanie" value="opatrunek uciskowy"> opatrunek uciskowy</label>
+<label><input type="checkbox" name="postepowanie" value="staza taktyczna"> staza taktyczna</label>
+<label><input type="checkbox" name="postepowanie" value="monitorowanie poszkodowanego"> monitorowanie poszkodowanego</label>
+
+</div>
+
+<!-- PODPIS -->
+
+<h2>Podpis</h2>
+
+<div class="signature">
+
+    <div class="field">
+
+        <label>Podpis ratownika</label>
+
+        <input
+            type="text"
+            id="podpis"
+            placeholder="Wpisz stopień imię i nazwisko">
+
+    </div>
+
+</div>
+
+<button
+    id="sendButton"
+    type="button">
+
+    🚑 Wyślij kartę na Discord
+
+</button>
+
+<div
+    class="status"
+    id="status">
+</div>
+
+</div>
+
+<script>
+
+/* =====================================================
+   DISCORD WEBHOOK
+   =====================================================
+
+   WSTAW TUTAJ NOWY WEBHOOK DISCORD.
+
+   NIE UDOSTĘPNIAJ GO PUBLICZNIE.
+===================================================== */
+
+const DISCORD_WEBHOOK =
+    "https://discord.com/api/webhooks/1486278302980116500/eafR11XEl2vHZgmXlPI1TqaNs_xlTHe0GrDvOBlcYPAtCfOOB75xogjgf5UshZFHqCKN";
+
+
+/* =====================================================
+   POBIERANIE WARTOŚCI
+===================================================== */
+
+function getValue(id) {
+
+    const element =
+        document.getElementById(id);
+
+    if (!element) {
+        return "—";
+    }
+
+    const value =
+        element.value.trim();
+
+    return value || "—";
+}
+
+
+/* =====================================================
+   RADIO
+===================================================== */
+
+function getRadio(name) {
+
+    const element =
+        document.querySelector(
+            'input[name="' +
+            name +
+            '"]:checked'
+        );
+
+    return element
+        ? element.value
+        : "Nie podano";
+}
+
+
+/* =====================================================
+   CHECKBOXY
+===================================================== */
+
+function getCheckboxes(name) {
+
+    const elements =
+        document.querySelectorAll(
+            'input[name="' +
+            name +
+            '"]:checked'
+        );
+
+    if (!elements.length) {
+        return "—";
+    }
+
+    return Array.from(elements)
+        .map(element => "☑ " + element.value)
+        .join("\n");
+}
+
+
+/* =====================================================
+   OGRANICZENIE DŁUGOŚCI
+===================================================== */
+
+function limitText(text, max = 1000) {
+
+    if (!text) {
+        return "—";
+    }
+
+    if (text.length <= max) {
+        return text;
+    }
+
+    return text.substring(0, max - 20)
+        + "\n...[obcięto]";
+}
+
+
+/* =====================================================
+   DATA I CZAS WYSŁANIA
+===================================================== */
+
+function getCurrentDateTime() {
+
+    const now = new Date();
+
+    return now.toLocaleString("pl-PL", {
+        dateStyle: "short",
+        timeStyle: "short"
+    });
+}
+
+
+/* =====================================================
+   WYSYŁANIE
+===================================================== */
+
+async function wyslijNaDiscord() {
+
+    const button =
+        document.getElementById("sendButton");
+
+    const status =
+        document.getElementById("status");
+
+
+    /* SPRAWDZENIE WEBHOOKA */
+
+    if (
+        !DISCORD_WEBHOOK ||
+        DISCORD_WEBHOOK === "WKLEJ_TUTAJ_NOWY_WEBHOOK" ||
+        !DISCORD_WEBHOOK.startsWith(
+            "https://discord.com/api/webhooks/"
+        )
+    ) {
+
+        status.style.color = "red";
+
+        status.innerText =
+            "❌ Nieprawidłowy webhook Discord.\n" +
+            "Wklej nowy pełny adres webhooka.";
+
+        return;
+    }
+
+
+    button.disabled = true;
+
+    status.style.color = "#555";
+
+    status.innerText =
+        "⏳ Wysyłanie karty do Discorda...";
+
+
+    /* =================================================
+       TWORZENIE EMBEDA
+    ================================================= */
+
+    const embed = {
+
+        title:
+            "🚑 KARTA UDZIELONEJ KWALIFIKOWANEJ PIERWSZEJ POMOCY",
+
+        color:
+            0xB30000,
+
+        fields: [
+
+            {
+                name:
+                    "📅 DATA I MIEJSCE ZDARZENIA",
+
+                value:
+                    "**Data:** " +
+                    getValue("data_zdarzenia") +
+
+                    "\n**Miejsce:** " +
+                    getValue("miejsce_zdarzenia") +
+
+                    "\n**Ratownik:** " +
+                    getValue("ratownik"),
+
+                inline: false
+            },
+
+            {
+                name:
+                    "👤 POSZKODOWANY",
+
+                value:
+                    "**Płeć:** " +
+                    getRadio("plec") +
+
+                    "\n**Data urodzenia:** " +
+                    getValue("data_urodzenia") +
+
+                    "\n**Nazwisko:** " +
+                    getValue("nazwisko") +
+
+                    "\n**Imię:** " +
+                    getValue("imie") +
+
+                    "\n**Uwagi:** " +
+                    limitText(getValue("uwagi")),
+
+                inline: false
+            },
+
+            {
+                name:
+                    "🧠 AVPU",
+
+                value:
+                    getRadio("avpu"),
+
+                inline: false
+            },
+
+            {
+                name:
+                    "❤️ PARAMETRY",
+
+                value:
+                    "**SpO₂:** " +
+                    getValue("spo2") +
+                    " %\n" +
+
+                    "**Tętno:** " +
+                    getValue("tetno") +
+                    " /min\n" +
+
+                    "**Oddech:** " +
+                    getValue("oddech") +
+                    " /min\n" +
+
+                    "**Kapilarny:** " +
+                    getRadio("kapilarny"),
+
+                inline: false
+            },
+
+            {
+                name:
+                    "📋 SAMPLE",
+
+                value:
+                    "**S:** " +
+                    limitText(getValue("sample_s"), 150) +
+
+                    "\n**A:** " +
+                    limitText(getValue("sample_a"), 150) +
+
+                    "\n**M:** " +
+                    limitText(getValue("sample_m"), 150) +
+
+                    "\n**P:** " +
+                    limitText(getValue("sample_p"), 150) +
+
+                    "\n**L:** " +
+                    limitText(getValue("sample_l"), 150) +
+
+                    "\n**E:** " +
+                    limitText(getValue("sample_e"), 150),
+
+                inline: false
+            },
+
+{
+    name: "📋 ABC",
+
+    value:
+        "**A — DROŻNOŚĆ DRÓG ODDECHOWYCH:**\n" +
+        limitText(getCheckboxes("abc_a"), 900) +
+
+        "\n\n**B — ODDECH:**\n" +
+        limitText(getCheckboxes("abc_b"), 900) +
+
+        "\n\n**C — KRĄŻENIE:**\n" +
+        limitText(getCheckboxes("abc_c"), 900),
+
+    inline: false
+},
+
+            {
+                name:
+                    "🩸 RODZAJ OBRAŻEŃ",
+
+                value:
+                    getCheckboxes("obrazenia"),
+
+                inline: false
+            },
+
+            {
+                name:
+                    "⚠️ RODZAJ OBJAWÓW",
+
+                value:
+                    limitText(
+                        getCheckboxes("objawy") +
+                        "\n\n**Inne:** " +
+                        getValue("inne_objawy")
+                    ),
+
+                inline: false
+            },
+
+            {
+                name:
+                    "🩺 POSTĘPOWANIE",
+
+                value:
+                    getCheckboxes("postepowanie"),
+
+                inline: false
+            },
+
+            {
+                name:
+                    "✍️ PODPIS",
+
+                value:
+                    "\n**Ratownik:** " +
+                    getValue("podpis"),
+
+                inline: false
+            }
+
+        ],
+
+        footer: {
+            text: "Karta KPP"
+        },
+
+        timestamp: new Date().toISOString()
+
+    };
+
+
+    /* =================================================
+       WYSŁANIE DO DISCORDA
+    ================================================= */
+
+    try {
+
+        const webhookUrl =
+            DISCORD_WEBHOOK +
+            "?wait=true";
+
+
+        const response =
+            await fetch(
+                webhookUrl,
+                {
+
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            username:
+                                "Karta KPP",
+
+                            embeds:
+                                [embed],
+
+                            allowed_mentions: {
+                                parse: []
+                            }
+
+                        })
+
+                }
+            );
+
+
+        /* BŁĄD */
+
+        if (!response.ok) {
+
+            let errorMessage =
+                "Discord HTTP " +
+                response.status;
+
+
+            try {
+
+                const errorData =
+                    await response.json();
+
+
+                if (errorData.message) {
+
+                    errorMessage +=
+                        "\n" +
+                        errorData.message;
+
+                }
+
+            } catch {
+
+                /* Brak JSON */
+
+            }
+
+
+            throw new Error(
+                errorMessage
+            );
+        }
+
+
+        /* SUKCES */
+
+        status.style.color =
+            "green";
+
+        status.innerText =
+            "✅ Karta została wysłana na Discord!";
+
+
+    } catch (error) {
+
+        console.error(
+            "BŁĄD DISCORD:",
+            error
+        );
+
+
+        status.style.color =
+            "red";
+
+
+        status.innerText =
+            "❌ Nie udało się wysłać karty.\n\n" +
+            error.message +
+            "\n\n" +
+            "Jeżeli widzisz błąd CORS, otwórz stronę " +
+            "z normalnego hostingu HTTPS, a nie przez file://.";
+
+
+    } finally {
+
+        button.disabled =
+            false;
+
+    }
+
+}
+
+
+/* =====================================================
+   PRZYCISK
+===================================================== */
+
+document
+    .getElementById("sendButton")
+    .addEventListener(
+        "click",
+        wyslijNaDiscord
+    );
+
+</script>
+
+</body>
+</html>
